@@ -1,0 +1,187 @@
+.card-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-container {
+    font-family: 'Pokemon solid';
+    color: black;
+    border: solid 10px #FFD700;
+    border-radius: 2%;
+    width: 300px;
+    height: fit-content;
+    background-color: #ffae00;
+}
+
+.nameHp{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.pokeImg{
+    display: flex;
+    justify-content: center;
+}
+
+.cardImgB{
+    border: solid #FFD700;
+    width: 90%;
+    height: 90%;
+}
+
+.cardImgB2{
+    border: solid #FFD700;
+    width: 90%;
+    height: 90%;
+}
+
+.cardImgBg{
+    background-image: url('./images/pmnbg.png');
+    background-repeat: no-repeat;
+}
+
+.cardImgBgg{
+    background-image: url('./images/pmnbgg.png');
+    background-repeat: no-repeat;
+}
+
+.infoBanner {
+    border: solid #FFD700;
+    border-radius: 50%;
+    background-color: #FFD700;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.infoBannerTypes {
+    background-color: #FFD700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h6{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.desc{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.attackMe{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: #FFD700 solid 1px;
+    padding: 5px;
+}
+
+.editInputs{
+    margin-top: 15px;
+    margin-left: 10px;
+    background-color: #ffae00;
+    border: solid 3px #FFD700;
+    border-radius: 3px;
+    color: black;
+    font-family: 'Pokemon solid';
+}
+
+.bank {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -250px;
+}
+
+.carouselcontainer{
+    background-image: url('./images/ashepchu.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: solid 7px #FFD700;
+    border-radius: 3px;
+    -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.carouselCardContainer{
+    background-image: url('./images/firebg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Pokemon solid';
+    color: black;
+    border: solid 10px #FFD700;
+    border-radius: 2%;
+    width: 300px;
+    height: fit-content;
+    background-color: #ff8800;
+}
+
+.carouselbutt {
+    border: transparent;
+    margin-right: 35px;
+    background-color: black;
+    color: #FFD700;
+    font-family: 'Pokemon solid';
+    font-size: 3rem;
+    height: 125px;
+    width: 185px;
+    justify-self: center;
+    
+}
+
+.carouselbuttons{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    padding-top: 35px;
+    
+    
+}
+
+.slider-carousel{
+    padding-bottom: 225px;
+    
+}
+
+.tform {
+    transform: scale(.5);
+    align-content: center;
+}
+
+.position{
+    margin-left: 50px;
+    margin-top: 50px;
+
+}
+
+.position-shrink{
+    transform: scale(.7);
+    
+}
+
+.carouselcontainer-shrink{
+    margin-top: 65px;
+    background-image: url('./images/ashepchu.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: repeat;
+    border: solid 7px #FFD700;
+    border-radius: 3px;
+    -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.entire-carousel-card-container{
+    padding-top: 80px;
+}

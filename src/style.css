@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Pokemon hollow';
+  src: url(https://www.dafont.com/pokemon.font.hollow.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Pokemon solid';
+  src: url(https://www.dafont.com/pokemon.font.solid.ttf) format('truetype');
+}
+
 body {
   margin: 0;
   font-family: 'Pokemon hollow';

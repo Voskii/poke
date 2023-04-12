@@ -108,7 +108,7 @@ export default function Battle() {
         </div>
         :
         <div>
-            <div className="page">
+            <div className="page battleshrink">
             {fighter1.id
             ?
             <div className="warss shrink space">

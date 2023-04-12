@@ -17,6 +17,10 @@ body {
   justify-content: center;
 }
 
+.battleshrink{
+  padding-top: 80px;
+}
+
 .battleButton {
   display: flex;
   justify-content: center;

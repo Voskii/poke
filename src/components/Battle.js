@@ -174,7 +174,7 @@ export default function Battle() {
                 
             </div>
             :
-            <button className="bb-shrink" onClick={() => {cherryPick()}}>GET POKEMON</button>
+            <button className="bb-shrink" onClick={() => {cherryPick()}}>START</button>
             }
             </div>
             <div className="inventory space">
@@ -185,7 +185,7 @@ export default function Battle() {
                 ''
                 }
                 </div>
-                <ul className="inventory-item">
+                <ul className="inventory-item down">
                 {inventory
                 ?
                 inventory.map(poke => (

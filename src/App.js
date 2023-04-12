@@ -67,7 +67,7 @@ export default function App(props) {
             <Route path ="/pokedex" element={<Pokedexx />} />
           </Routes>
         </div>
-        <footer style={{color: '#FFD700'}}>
+        <footer style={{color: '#FFD700', marginTop: `${isDesktopOrLaptop? '': '60px'}`}}>
           HAVE FUN
         </footer>
       </div>

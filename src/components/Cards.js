@@ -230,7 +230,7 @@ export default function Cards() {
                                         value={editCard.species}
                                         onChange={handleEdits}
                                     />
-                                    <input className='editInputs' type='text' placeholder="Style"/>
+                                    {/* <input className='editInputs' type='text' placeholder="Style"/> */}
                                     <button className="battleButton" onClick={() => bankIt(editCard.id)}>BANK IT</button>
                                 </div>
                             </div>

@@ -97,7 +97,7 @@ export default function Pokedex() {
 
     const handleChange = (e) => {
         const {name, value} = e.target
-        setPokeName({[name]:value})
+        setPokeName({[name]:value.toLowerCase()})
         console.log(`handleCHANGE FUNC:`, pokeName)
     }
     

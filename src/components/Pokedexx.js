@@ -7,6 +7,8 @@ import opika from '../images/oface.png'
 import axios from "axios";
 import MediaQuery from 'react-responsive'
 
+//consider adding ability for mpbile user to push enter on keyboard to initiate pokedex search
+
 export default function Pokedex() {
     
     var [date, setDate] = useState(new Date());

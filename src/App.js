@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import Pokedexx from './components/Pokedexx'
 import Battle from './components/Battle'
 import Cards from './components/Cards'
-import img from './images/PokeAPII.png'
+import img from './images/PokeWorld.png'
 
 
 export default function App(props) {

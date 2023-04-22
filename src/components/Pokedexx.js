@@ -6,6 +6,16 @@ import pika from '../images/pikachu.png'
 import opika from '../images/oface.png'
 import axios from "axios";
 import MediaQuery from 'react-responsive'
+import Poppy from '../images/Poppy.png'
+import Mario from "../images/Mario.png"
+import Axe from "../images/Axe.png"
+import Xan from "../images/Xander.png"
+import Ian from "../images/Ian.png"
+import Ayee from "../images/Ayee.png"
+import Pig from "../images/Pig.png"
+import Ear from "../images/Ear.png"
+import PikaIan from "../images/Bday.png"
+
 
 //consider adding ability for mpbile user to push enter on keyboard to initiate pokedex search
 
@@ -13,6 +23,7 @@ export default function Pokedex() {
     
     var [date, setDate] = useState(new Date());
     const [whoDat, setWhoDat] = useState(false)
+    const [bros, setBros] = useState(false)
     const [userPoke, setUserPoke] = useState({})
     const [pokeName, setPokeName] = useState('')
     const [colorCube, setColorCube] = useState({
@@ -96,6 +107,7 @@ export default function Pokedex() {
             box8: `#${colors[colour8]}`
         })
     }
+    const lilBros = [{name: 'Ian'}]
 
     const handleChange = (e) => {
         const {name, value} = e.target
@@ -106,10 +118,61 @@ export default function Pokedex() {
     const noPoki = () => {
         setWhoDat(!whoDat)
         setPokeName({name: ''})
+        setBros(false)
     }
     const pokeReveal = () => {
-        
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName.name}`)
+        if(pokeName.name === 'ian'){
+            setBros(!bros)
+            setWhoDat(!whoDat)
+            setUserPoke({
+                id: '',
+                name: 'ian',
+                hp: 'Pancake',
+                attack: 'Bite',
+                def: 'Yells MOM',
+                speed: 'GO',
+                img: Ian,
+                imgB: '',
+                types: '',
+                attacks: '',
+                species: `Happy Birthday! You're strong, joyful, and sweet. Keep lighting up the world with your kind heart and infectious smile. Keep dreaming big! 🎂🎉`,
+                height: '8ft9in',
+                weight: '487lbs',
+                evos: '',
+                pk1Img: Poppy,
+                img1Name: 'Poppy',
+                pk2Img: Mario,
+                img2Name: 'Mario',
+                pk3Img: Axe,
+                img3Name: 'Fort Pick Axe'
+        })
+        } else if(pokeName.name === "xander"){
+            setBros(!bros)
+            setWhoDat(!whoDat)
+            setUserPoke({
+                    id: '',
+                    name: 'Xander',
+                    hp: 'chicken',
+                    attack: 'math',
+                    def: 'Yells MOM',
+                    speed: 'omg!',
+                    img: Xan,
+                    imgB: '',
+                    types: '',
+                    attacks: '',
+                    species: `You're amazing! Your creativity, kindness, and adventurous spirit inspire us all. Keep learning! ✨'`,
+                    height: '2ft7in',
+                    weight: '7800 frogs',
+                    evos: '',
+                    pk1Img: Ayee,
+                    img1Name: 'Yo',
+                    pk2Img: Pig,
+                    img2Name: 'Mama',
+                    pk3Img: Ear,
+                    img3Name: 'Has'
+            })
+        } else {
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName.name}`)
             .then(res => {
                 const speciesUrl = res.data.species.url
                 setUserPoke({
@@ -223,21 +286,19 @@ export default function Pokedex() {
             .catch(error => console.log(error))
 
         console.log(`inside poke Reveal:`, pokeName, userPoke)
-        
-        
-        
+
+        }
     }
 
     const flavor = () => {
         console.log("Flavor function called")
         console.log(`H6 STATE CALL:`, userPoke?.evos?.species?.name)
     }
-    
+    console.log(`bro state:`, bros)
     return (
         <div>
                 <MediaQuery minWidth={895}>
                 <div className="pd-grid-container">
-
                 {whoDat
                 ?
                 <div className="box1"> 
@@ -305,12 +366,17 @@ export default function Pokedex() {
                     <div className="key" style={{backgroundColor: `${colorCube.box7}`}}></div>
                     <div className="key" style={{backgroundColor: `${colorCube.box8}`}}></div>
                 </div>
-                {whoDat
+                {whoDat && bros
+                ?   
+                    <span className="desc-input" type='text'>{userPoke.species}</span>
+                :
+                    whoDat
                 ?   
                     <span className="desc-input" type='text'>{userPoke.species[0]}</span>
                 :
                     <span className="desc-input" value='' type='text'>...description...</span>
-                
+                }
+                {
                 }
             </div>
             {whoDat
@@ -319,12 +385,22 @@ export default function Pokedex() {
                 <div>
                     <div className="evo-container">
                         <div className="evoPoke">
-                            {userPoke.pk1Img !== ''
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img1Name}</h6>
+                                <img src={userPoke.pk1Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
+                                    </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk1Img !== '' && !bros
                             ?
                                 <div>
                                     <h6>{userPoke.evos.species.name}</h6>
                                     <img src={userPoke.pk1Img} className='evo1-img'/>
                                 </div>
+                            : bros?
+                                ''
                             :
                                 <div>
                                     <h6>No Data</h6>
@@ -332,29 +408,49 @@ export default function Pokedex() {
                             }
                         </div>
                         <div className="evoPoke">
-                            {userPoke.pk2Img !== ''
-                            ?
-                                <div>
-                                    <h6>{userPoke.evos.evolves_to[0].species.name}</h6>
-                                    <img src={userPoke.pk2Img} className='evo2-img'/>
-                                </div>
-                            :
-                                <div>
-                                    <h6>No Data</h6>
-                                </div>
-                            }
-                        </div>
-                        <div className="evoPoke">
-                            {userPoke.pk3Img !== ''
-                                ?
-                                    <div>
-                                        <h6>{userPoke.evos.evolves_to[0].evolves_to[0].species.name}</h6>
-                                        <img src={userPoke.pk3Img} className='evo3-img'/>
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img2Name}</h6>
+                                <img src={userPoke.pk2Img} className='evo1-img' style={{width: `100px`, height: `160px`}}/>
                                     </div>
                                 :
-                                    <div>
-                                        <h6>No Data</h6>
+                                ''
+                            }
+                            {userPoke.pk2Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0]? userPoke.evos.evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk2Img} className='evo2-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
+                            }
+                        </div>
+                        <div className="evoPoke">
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img3Name}</h6>
+                                <img src={userPoke.pk3Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
                                     </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk3Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0].evolves_to[0]? userPoke.evos.evolves_to[0].evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk3Img} className='evo3-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
                             }
                         </div>
                     </div>
@@ -374,21 +470,38 @@ export default function Pokedex() {
             }
             
             <div className="box4">
-            {whoDat
-            ?
-                <div>
-                    <img src={pika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            :
-                <div>
-                    <img src={opika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            }
-                
+                {bros?
+                    <div>
+                        <img src={userPoke.name==='ian'? PikaIan: pika} style={{height: "60%", width: '80%'}}/>
+                    </div>
+                    :
+                    whoDat? 
+                    <div>
+                        <img src={pika} style={{height: "60%", width: '80%'}}/>
+                    </div>
+                    :
+                    <div>
+                        <img src={opika} style={{height: "60%", width: '80%'}}/>
+                    </div>
+                }
             </div>
             </div>
             </MediaQuery>
             <MediaQuery minWidth={521} maxWidth={894}>
+            {bros?
+                    <div className="pikaCleanup-m">
+                        <img src={userPoke.name==='ian'? PikaIan: pika} style={{height: "60%", width: '80%'}}/>
+                    </div>
+                    :
+                    whoDat? 
+                    <div className="pikaCleanup-m">
+                        <img src={pika} style={{height: "60%", width: '80%'}} />
+                    </div>
+                    :
+                    <div className="pikaCleanup-m">
+                        <img src={opika} style={{height: "60%", width: '80%'}} />
+                    </div>
+                }
             <div className="pd-grid-container-med-mq">
             {whoDat
                 ?
@@ -457,12 +570,17 @@ export default function Pokedex() {
                     <div className="key" style={{backgroundColor: `${colorCube.box7}`}}></div>
                     <div className="key" style={{backgroundColor: `${colorCube.box8}`}}></div>
                 </div>
-                {whoDat
+                {whoDat && bros
+                ?   
+                    <span className="desc-input" type='text'>{userPoke.species}</span>
+                :
+                    whoDat
                 ?   
                     <span className="desc-input" type='text'>{userPoke.species[0]}</span>
                 :
                     <span className="desc-input" value='' type='text'>...description...</span>
-                
+                }
+                {
                 }
             </div>
             {whoDat
@@ -471,12 +589,22 @@ export default function Pokedex() {
                 <div>
                     <div className="evo-container">
                         <div className="evoPoke">
-                            {userPoke.pk1Img !== ''
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img1Name}</h6>
+                                <img src={userPoke.pk1Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
+                                    </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk1Img !== '' && !bros
                             ?
                                 <div>
                                     <h6>{userPoke.evos.species.name}</h6>
                                     <img src={userPoke.pk1Img} className='evo1-img'/>
                                 </div>
+                            : bros?
+                                ''
                             :
                                 <div>
                                     <h6>No Data</h6>
@@ -484,29 +612,49 @@ export default function Pokedex() {
                             }
                         </div>
                         <div className="evoPoke">
-                            {userPoke.pk2Img !== ''
-                            ?
-                                <div>
-                                    <h6>{userPoke.evos.evolves_to[0].species.name}</h6>
-                                    <img src={userPoke.pk2Img} className='evo2-img'/>
-                                </div>
-                            :
-                                <div>
-                                    <h6>No Data</h6>
-                                </div>
-                            }
-                        </div>
-                        <div className="evoPoke">
-                            {userPoke.pk3Img !== ''
-                                ?
-                                    <div>
-                                        <h6>{userPoke.evos.evolves_to[0].evolves_to[0].species.name}</h6>
-                                        <img src={userPoke.pk3Img} className='evo3-img'/>
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img2Name}</h6>
+                                <img src={userPoke.pk2Img} className='evo1-img' style={{width: `100px`, height: `160px`}}/>
                                     </div>
                                 :
-                                    <div>
-                                        <h6>No Data</h6>
+                                ''
+                            }
+                            {userPoke.pk2Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0]? userPoke.evos.evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk2Img} className='evo2-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
+                            }
+                        </div>
+                        <div className="evoPoke">
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img3Name}</h6>
+                                <img src={userPoke.pk3Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
                                     </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk3Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0].evolves_to[0]? userPoke.evos.evolves_to[0].evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk3Img} className='evo3-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
                             }
                         </div>
                     </div>
@@ -524,22 +672,23 @@ export default function Pokedex() {
             :
             ''
             }
-            
-            <div className="box4">
-            {whoDat
-            ?
-                <div>
-                    <img src={pika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            :
-                <div>
-                    <img src={opika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            }
-            </div>
             </div>
             </MediaQuery>
             <MediaQuery maxWidth={520} >
+                {bros?
+                    <div className="pikaCleanup">
+                        <img src={userPoke.name==='ian'? PikaIan: pika} style={{height: "60%", width: '80%'}}/>
+                    </div>
+                    :
+                    whoDat? 
+                    <div className="pikaCleanup">
+                        <img src={pika} style={{height: "60%", width: '80%'}} />
+                    </div>
+                    :
+                    <div className="pikaCleanup">
+                        <img src={opika} style={{height: "60%", width: '80%'}} />
+                    </div>
+                }
             <div className="pd-grid-container-med-mq shrinkk">
             {whoDat
                 ?
@@ -608,12 +757,17 @@ export default function Pokedex() {
                     <div className="key" style={{backgroundColor: `${colorCube.box7}`}}></div>
                     <div className="key" style={{backgroundColor: `${colorCube.box8}`}}></div>
                 </div>
-                {whoDat
+                {whoDat && bros
+                ?   
+                    <span className="desc-input" type='text'>{userPoke.species}</span>
+                :
+                    whoDat
                 ?   
                     <span className="desc-input" type='text'>{userPoke.species[0]}</span>
                 :
                     <span className="desc-input" value='' type='text'>...description...</span>
-                
+                }
+                {
                 }
             </div>
             {whoDat
@@ -622,12 +776,22 @@ export default function Pokedex() {
                 <div>
                     <div className="evo-container">
                         <div className="evoPoke">
-                            {userPoke.pk1Img !== ''
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img1Name}</h6>
+                                <img src={userPoke.pk1Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
+                                    </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk1Img !== '' && !bros
                             ?
                                 <div>
                                     <h6>{userPoke.evos.species.name}</h6>
                                     <img src={userPoke.pk1Img} className='evo1-img'/>
                                 </div>
+                            : bros?
+                                ''
                             :
                                 <div>
                                     <h6>No Data</h6>
@@ -635,29 +799,49 @@ export default function Pokedex() {
                             }
                         </div>
                         <div className="evoPoke">
-                            {userPoke.pk2Img !== ''
-                            ?
-                                <div>
-                                    <h6>{userPoke.evos.evolves_to[0].species.name}</h6>
-                                    <img src={userPoke.pk2Img} className='evo2-img'/>
-                                </div>
-                            :
-                                <div>
-                                    <h6>No Data</h6>
-                                </div>
-                            }
-                        </div>
-                        <div className="evoPoke">
-                            {userPoke.pk3Img !== ''
-                                ?
-                                    <div>
-                                        <h6>{userPoke.evos.evolves_to[0].evolves_to[0].species.name}</h6>
-                                        <img src={userPoke.pk3Img} className='evo3-img'/>
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img2Name}</h6>
+                                <img src={userPoke.pk2Img} className='evo1-img' style={{width: `100px`, height: `160px`}}/>
                                     </div>
                                 :
-                                    <div>
-                                        <h6>No Data</h6>
+                                ''
+                            }
+                            {userPoke.pk2Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0]? userPoke.evos.evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk2Img} className='evo2-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
+                            }
+                        </div>
+                        <div className="evoPoke">
+                            {bros?
+                            <div>
+                                <h6>{userPoke.img3Name}</h6>
+                                <img src={userPoke.pk3Img} className='evo1-img' style={{width: `100px`, height: `100px`}}/>
                                     </div>
+                                :
+                                ''
+                            }
+                            {userPoke.pk3Img !== '' && !bros
+                            ?
+                                <div>
+                                    <h6>{userPoke.evos.evolves_to[0].evolves_to[0]? userPoke.evos.evolves_to[0].evolves_to[0].species.name:<h6>No Data</h6>}</h6>
+                                    <img src={userPoke.pk3Img} className='evo3-img'/>
+                                </div>
+                            : bros?
+                                ''
+                            :
+                                <div>
+                                    <h6>No Data</h6>
+                                </div>
                             }
                         </div>
                     </div>
@@ -675,19 +859,8 @@ export default function Pokedex() {
             :
             ''
             }
-            
-            <div className="box4">
-            {whoDat
-            ?
-                <div>
-                    <img src={pika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            :
-                <div>
-                    <img src={opika} style={{height: "60%", width: '80%'}}/>
-                </div>
-            }
-            </div>
+            {/* <div className="box4">
+            </div> */}
             </div>
             </MediaQuery>
         </div>

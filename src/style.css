@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  font-family: 'Pokemon hollow';
+  font-family: 'Pokemon hollow', 'Alkatra', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;

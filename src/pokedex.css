@@ -272,7 +272,7 @@ ul li::marker {
 
 .pikaCleanup-m{
     margin-top: -125px;
-    margin-bottom: -80px;
+    margin-bottom: -120px;
     display: flex;
     justify-content: center;
     transform: scale(.4);

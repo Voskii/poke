@@ -676,16 +676,16 @@ export default function Pokedex() {
             </MediaQuery>
             <MediaQuery maxWidth={520} >
                 {bros?
-                    <div className="pikaCleanup">
-                        <img src={userPoke.name==='ian'? PikaIan: pika} style={{height: "60%", width: '80%'}}/>
+                    <div className="pikaCleanup-m">
+                        <img src={userPoke.name==='ian'? PikaIan: pika} style={{height: "0%", width: '80%'}}/>
                     </div>
                     :
                     whoDat? 
-                    <div className="pikaCleanup">
+                    <div className="pikaCleanup-m">
                         <img src={pika} style={{height: "60%", width: '80%'}} />
                     </div>
                     :
-                    <div className="pikaCleanup">
+                    <div className="pikaCleanup-m">
                         <img src={opika} style={{height: "60%", width: '80%'}} />
                     </div>
                 }
